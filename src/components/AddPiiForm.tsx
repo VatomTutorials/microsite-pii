@@ -25,8 +25,10 @@ export function AddPiiForm({ onSubmit }: AddPiiFormProps) {
 	};
 
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(checkStatus: boolean, event: React.FormEvent<HTMLFormElement>) {
     //e.preventDefault();
+    console.log("AddPiiForm:handleSubmit(checkStatus, event) params:", checkStatus, event);
+    
     if ((newItem.piiKey === "") && (newItem.piiValue === "")) return;
 
     onSubmit(newItem);

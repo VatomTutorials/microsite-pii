@@ -29,7 +29,6 @@ const HomePage = () => {
     //statusText = `Recently added( ${item.piiKey}: ${item.piiValue} )`;
     //console.log(statusText);
 
-		
     updateUserCampaignInfo( newPii );
 	}// addItem()
 
@@ -37,11 +36,18 @@ const HomePage = () => {
 	const fetchItemByKey = (key: string) => {
 		const info = campaignUserInfo as PiiObject;
 		
+		if (! info){
+			const displayMessage: string = "Fetch is only available under ExperienceProvider";
+			console.log(displayMessage);
+			setRecentFetch(displayMessage);
+			return;
+		}
+		
 		console.log("About to Fetch from key: ", key, info);
 		
 		const value = info[key];
 		console.log("Fetch by key:", key, value);
-		//setRecentFetch(`Recently added( ${item.piiKey}: ${item.piiValue} )`);
+		setRecentFetch(`Recently fetched( ${key}: ${value} )`);
 	}// fetchItem()
 
 
@@ -53,7 +59,7 @@ const HomePage = () => {
 			<br/>
 			<div className='border-box'>
 				<FetchPiiForm onSubmit={fetchItemByKey} />
-
+				{recentFetch}
 			</div>
 			
 			<h1>Micro-Site Home</h1>

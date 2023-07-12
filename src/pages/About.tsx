@@ -10,7 +10,7 @@ const AboutPage = () => {
   return (
 		<div>
 			<h1>About page</h1>
-			<h3>v 0.0.001</h3>
+			<h3>v 0.0.002</h3>
 			
 			<button
 				onClick={() => {
