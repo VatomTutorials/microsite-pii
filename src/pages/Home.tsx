@@ -2,7 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useExperience, useUser } from "@vatom/experience-sdk";
 import { AddPiiForm, AddPiiFormData } from "../components/AddPiiForm"
 import { FetchPiiForm } from "../components/FetchPiiForm"
-import './Common.css'
+import { Button } from "rsuite";
+import 'rsuite/dist/rsuite.min.css';
+import './Common.css';
 
 
 interface PiiObject {
@@ -14,6 +16,7 @@ const HomePage = () => {
 	const navigate = useNavigate();
 	const { navigateToWallet } = useExperience();
   const { campaignUserInfo, updateUserCampaignInfo } = useUser();
+	//var statusText: string = "Recently added:...";
 
 
 	const addItem = (item: AddPiiFormData) => {
@@ -21,6 +24,10 @@ const HomePage = () => {
 		
 		newPii[ item.piiKey ] = item.piiValue;
 		console.log("Adding:", item, newPii);
+		
+    //statusText = `Recently added( ${item.piiKey}: ${item.piiValue} )`;
+    //console.log(statusText);
+
 		
     updateUserCampaignInfo( newPii );
 	}// addItem()
@@ -35,26 +42,34 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<AddPiiForm onSubmit={addItem} />
+			<div className='border-box'>
+				<AddPiiForm onSubmit={addItem} />
+			</div>
 			<br/>
-			<FetchPiiForm onSubmit={fetchItemByKey} />
+			<div className='border-box'>
+				<FetchPiiForm onSubmit={fetchItemByKey} />
+			</div>
 			
 			<h1>Micro-Site Home</h1>
-			<button
+			<Button
+				color="cyan"
+				appearance="primary"
 				onClick={() => {
 					navigate("/about");
 				}}
 			>
 				About
-			</button>
-			---
-			<button
+			</Button>
+			&nbsp;	&nbsp;	&nbsp;	&nbsp;
+			<Button
+				color="cyan"
+				appearance="primary"
 				onClick={() => {
 					navigateToWallet();
 				}}
 			>
 				Wallet
-			</button>
+			</Button>
 		</div>
 	);
 }

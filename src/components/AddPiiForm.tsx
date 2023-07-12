@@ -1,4 +1,6 @@
 import React from "react"
+import { Form, Button } from "rsuite";
+import 'rsuite/dist/rsuite.min.css';
 
 
 interface AddPiiFormProps {
@@ -24,7 +26,7 @@ export function AddPiiForm({ onSubmit }: AddPiiFormProps) {
 
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    //e.preventDefault();
     if ((newItem.piiKey === "") && (newItem.piiValue === "")) return;
 
     onSubmit(newItem);
@@ -34,7 +36,7 @@ export function AddPiiForm({ onSubmit }: AddPiiFormProps) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="new-item-form">
+    <Form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
         <label htmlFor="piiKey">Pii Key: </label>
         <input
@@ -44,7 +46,8 @@ export function AddPiiForm({ onSubmit }: AddPiiFormProps) {
           name="piiKey"
           id="piiKey"
         />
-        <br/>
+			</div>
+      <div className="form-row">
         <label htmlFor="piiValue">Pii Value: </label>
         <input
         	value={newItem.piiValue}
@@ -54,7 +57,17 @@ export function AddPiiForm({ onSubmit }: AddPiiFormProps) {
          	id="piiValue"
         />
       </div>
-      <button className="btn">Add</button>
-    </form>
+      <br/>
+      <div className="form-row">
+      <Button
+				color="cyan"
+				appearance="primary"
+      	className="btn"
+      	type="submit"
+      >
+      	Add
+      </Button>
+      </div>
+    </Form>
   )
 }

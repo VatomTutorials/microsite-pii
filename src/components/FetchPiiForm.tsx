@@ -1,4 +1,6 @@
-import React from "react"
+import React from "react";
+import { Button } from "rsuite";
+import 'rsuite/dist/rsuite.min.css';
 
 
 interface FetchPiiFormProps {
@@ -34,7 +36,13 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
           id="piiKey"
         />
       </div>
-      <button className="btn">Fetch</button>
+      <Button
+				color="cyan"
+				appearance="primary"
+      	className="btn"
+      >
+      	Fetch
+      </Button>
     </form>
   )
 }
