@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "rsuite";
+import { Form, Button } from "rsuite";
 import 'rsuite/dist/rsuite.min.css';
 
 
@@ -16,7 +16,7 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
 
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    //e.preventDefault();
     if (piiKey === "") return;
 
     onSubmit(piiKey);
@@ -26,7 +26,7 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="fetch-pii-form">
+    <Form onSubmit={handleSubmit} className="fetch-pii-form">
       <div className="form-row">
         <label htmlFor="piiKey">Pii Key: </label>
         <input
@@ -40,9 +40,10 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
 				color="cyan"
 				appearance="primary"
       	className="btn"
+      	type="submit"
       >
       	Fetch
       </Button>
-    </form>
+    </Form>
   )
 }

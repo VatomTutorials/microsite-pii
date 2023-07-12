@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useExperience, useUser } from "@vatom/experience-sdk";
 import { AddPiiForm, AddPiiFormData } from "../components/AddPiiForm"
@@ -13,10 +14,10 @@ interface PiiObject {
 
 
 const HomePage = () => {
+  const [recentFetch, setRecentFetch] = React.useState<string>("");
 	const navigate = useNavigate();
 	const { navigateToWallet } = useExperience();
   const { campaignUserInfo, updateUserCampaignInfo } = useUser();
-	//var statusText: string = "Recently added:...";
 
 
 	const addItem = (item: AddPiiFormData) => {
@@ -35,8 +36,12 @@ const HomePage = () => {
 
 	const fetchItemByKey = (key: string) => {
 		const info = campaignUserInfo as PiiObject;
+		
+		console.log("About to Fetch from key: ", key, info);
+		
 		const value = info[key];
 		console.log("Fetch by key:", key, value);
+		//setRecentFetch(`Recently added( ${item.piiKey}: ${item.piiValue} )`);
 	}// fetchItem()
 
 
@@ -48,6 +53,7 @@ const HomePage = () => {
 			<br/>
 			<div className='border-box'>
 				<FetchPiiForm onSubmit={fetchItemByKey} />
+
 			</div>
 			
 			<h1>Micro-Site Home</h1>
