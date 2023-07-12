@@ -1,4 +1,6 @@
-import React from "react"
+import React from "react";
+import { Form, Button } from "rsuite";
+import 'rsuite/dist/rsuite.min.css';
 
 
 interface FetchPiiFormProps {
@@ -13,8 +15,10 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
 	};
 
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function handleSubmit(checkStatus: boolean, event: React.FormEvent<HTMLFormElement>) {
+    //e.preventDefault();
+    console.log("AddPiiForm:handleSubmit(checkStatus, event) params:", checkStatus, event);
+    
     if (piiKey === "") return;
 
     onSubmit(piiKey);
@@ -24,7 +28,7 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="fetch-pii-form">
+    <Form onSubmit={handleSubmit} className="fetch-pii-form">
       <div className="form-row">
         <label htmlFor="piiKey">Pii Key: </label>
         <input
@@ -34,7 +38,14 @@ export function FetchPiiForm({ onSubmit }: FetchPiiFormProps) {
           id="piiKey"
         />
       </div>
-      <button className="btn">Fetch</button>
-    </form>
+      <Button
+				color="cyan"
+				appearance="primary"
+      	className="btn"
+      	type="submit"
+      >
+      	Fetch
+      </Button>
+    </Form>
   )
 }
