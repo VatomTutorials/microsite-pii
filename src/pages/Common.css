@@ -9,3 +9,52 @@
 .border-box {
   border:1px solid black;
 }
+
+.page_frame {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.page_header{
+	overflow: hidden;
+	height: 64px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.page_torso{
+	height: 1fr;
+	overflow: auto;
+}
+
+.page_footer{
+	overflow: hidden;
+	height: 64px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.torso_flexitem{
+	flex: 1 1 auto;
+}
+
+.torso_scroll_container {
+	margin-left: 12px;
+	overflow-y: auto;
+}
+
+.content_section {
+	padding: 20px;
+}
+
+.header_flexitem{
+	flex: 0 1 auto;
+}
+
+.footer_flexitem{
+	flex: 0 1 auto;
+}
